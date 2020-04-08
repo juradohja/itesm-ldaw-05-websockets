@@ -60,6 +60,8 @@ const axios = require('axios');
 var players = [];
 var sockets = [];
 var alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+var letter = '';
+var gameRunning = false;
 
 io.on('connection', (socket) => {
   axios.get("https://random-word-api.herokuapp.com/word?number=1")
@@ -67,18 +69,20 @@ io.on('connection', (socket) => {
       var newPlayer = response.data[0];
       players.push(newPlayer);
       sockets.push(socket);
-      socket.emit('welcome', {name : newPlayer, players : players});
+      socket.emit('welcome', {name : newPlayer, players : players, gameRunning : gameRunning, letter : letter});
       socket.broadcast.emit('newPlayer', {players : players});
     });
   let i = 0;
   socket.on('startGame', () => {
-    console.log("Game is starting.");
-    var letter = alphabet[Math.floor((Math.random() * 26))];
+    letter = alphabet[Math.floor((Math.random() * 26))];
+    gameRunning = true;
     socket.emit('startGame', {letter : letter});
     socket.broadcast.emit('startGame', {letter : letter});
   });
   socket.on('stopGame', () => {
-    console.log("Stop");
+    gameRunning = false;
+    socket.emit('stopGame');
+    socket.broadcast.emit('stopGame');
   })
   socket.on('disconnect', () => {
     var i = sockets.indexOf(socket);

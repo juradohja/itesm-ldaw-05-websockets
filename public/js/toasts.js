@@ -51,3 +51,17 @@ function gameStartsToast(letter){
     hideAfter : 5000
   })
 }
+
+function stopToast(letter){
+  var msg = "El juego ha terminado.";
+  $.toast({
+    heading : "¡BASTA!",
+    text : msg,
+    position : "mid-center",
+    showHideTransition : "fade",
+    loader : false,
+    bgColor : "#963030",
+    hideAfter : 3000,
+    textAlign : 'center'
+  })
+}

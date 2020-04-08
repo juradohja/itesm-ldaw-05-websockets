@@ -11,8 +11,12 @@ function connectToSocketIo() {
     player = data.name;
     $("#user").text(player);
     welcomeToast(player);
-    if(pregameScreenOn){
+    if(data.gameRunning){
+      prepareGame(data.letter);
+      pregameScreenOn = false;
+    } else {
       updateCards(data.players);
+      pregameScreenOn = true;
     }
   });
 
@@ -37,12 +41,15 @@ function connectToSocketIo() {
 
   // Game starts
   window.socket.on('startGame', function (data) {
-    console.log("starting game");
-    var letter = data.letter;
-    $("#letter").text(letter);
-    $("#pregameScreen").hide();
-    $("#gameScreen").show();
-    gameStartsToast(letter);
+    prepareGame(data.letter);
+  })
+
+  // Game stops
+  window.socket.on('stopGame', function () {
+    stopToast();
+    evaluateAnswers();
+    $("#btnStop").hide();
+    $("#btnRestart").show();
   })
 }
 
@@ -72,4 +79,51 @@ function startGame(){
 
 function stopGame(){
   window.socket.emit("stopGame");
+}
+
+function prepareGame(ltr){
+  var letter = ltr;
+  $("#letter").text(letter);
+  $("#pregameScreen").hide();
+  $("#gameScreen").show();
+  $("#btnRestart").hide();
+  $("#btnStop").show();
+  gameStartsToast(letter);
+}
+
+function evaluateAnswers(){
+  $("input[type='text']").prop("disabled", true);
+  // Nombre
+  if($("#inputName").val() !== ""){
+    $("#inputName").addClass("is-valid");
+  } else { $("#inputName").addClass("is-invalid"); }
+  // Apellido
+  if($("#inputSurname").val() !== ""){
+    $("#inputSurname").addClass("is-valid");
+  } else { $("#inputSurname").addClass("is-invalid"); }
+  // Animal
+  if($("#inputAnimal").val() !== ""){
+    $("#inputAnimal").addClass("is-valid");
+  } else { $("#inputAnimal").addClass("is-invalid"); }
+  // Ciudad o País
+  if($("#inputCoC").val() !== ""){
+    $("#inputCoC").addClass("is-valid");
+  } else { $("#inputCoC").addClass("is-invalid"); }
+  // Color
+  if($("#inputColor").val() !== ""){
+    $("#inputColor").addClass("is-valid");
+  } else { $("#inputColor").addClass("is-invalid"); }
+  // Flor o Fruto
+  if($("#inputFoF").val() !== ""){
+    $("#inputFoF").addClass("is-valid");
+  } else { $("#inputFoF").addClass("is-invalid"); }
+  // Marca
+  if($("#inputBrand").val() !== ""){
+    $("#inputBrand").addClass("is-valid");
+  } else { $("#inputBrand").addClass("is-invalid"); }
+  // Película o Serie
+  if($("#inputMoTV").val() !== ""){
+    $("#inputMoTV").addClass("is-valid");
+  } else { $("#inputMoTV").addClass("is-invalid"); }
+
 }

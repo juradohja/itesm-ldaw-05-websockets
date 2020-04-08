@@ -99,13 +99,15 @@
         </div>
         <div class="col-4"></div>
       </div>
-      <div class="row">
-        <div class="col-5"></div>
-        <div class="col-2">
-          <button class="btn btn-danger w-100" onclick="stopGame()"><strong>¡BASTA!</strong></button>
-        </div>
-        <div class="col-5"></div>
-      </div>
     </form>
+
+    <div class="row">
+      <div class="col-5"></div>
+      <div class="col-2">
+        <button id="btnStop" class="btn btn-danger w-100" onclick="stopGame()"><strong>¡BASTA!</strong></button>
+        <button id="btnRestart" class="btn btn-success w-100" onclick="startGame()" style="display:none;">Nuevo juego</button>
+      </div>
+      <div class="col-5"></div>
+    </div>
   </div>
 </main>
