@@ -1,11 +1,3 @@
-function showToast(msg) {
-  console.log("El mensaje es: " + msg);
-  $.toast({
-    text : msg,
-    position : "bottom-right"
-  });
-}
-
 window.socket = null;
 var player = "";
 
@@ -14,18 +6,18 @@ function connectToSocketIo() {
   window.socket = io.connect(server);
   window.socket.on('welcome', function(data) {
     player = data.name;
-    showToast("¡Bienvenido al juego, " + player + "!");
+    welcomeToast(player);
     updateCards(data.players);
   })
   window.socket.on('newPlayer', function(data) {
     var players = data.players;
     var newPlayer = players[players.length - 1];
-    showToast(newPlayer + " se ha unido al juego.");
+    newPlayerToast(newPlayer);
     updateCards(data.players);
   });
   window.socket.on('playerDisconnect', function (data) {
     var playerName = data.name;
-    showToast(playerName + " se ha desconectado.");
+    playerDisconnectToast(playerName);
     updateCards(data.players);
   })
 }
