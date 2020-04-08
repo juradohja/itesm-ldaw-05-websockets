@@ -1,19 +1,111 @@
 <main role="main" class="container">
-  <div class="row">
-    <div class="col-10">
-      <h1 class="display-4">Basta Online!</h1>
-      <h4 id="welcomePlayer"></h4>
-      <br>
+  <div id="pregameScreen">
+    <div class="row">
+      <div class="col-10">
+        <h1 class="display-4">Basta Online!</h1>
+        <h4 id="welcomePlayer"></h4>
+        <br>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-success w-100 mt-4" onclick="startGame()">Iniciar juego</button>
+      </div>
     </div>
-    <div class="col-2">
-      <button class="btn btn-success w-100 mt-4" onclick="startGame()">Iniciar juego</button>
+    <div class="row">
+      <div class="col">
+        <h5 class="mb-3">Jugadores conectados:</h5>
+      </div>
+    </div>
+    <div class="row row-cols-3" id="playerCards">
     </div>
   </div>
-  <div class="row">
-    <div class="col">
-      <h5 class="mb-3">Jugadores conectados:</h5>
+
+  <div id="gameScreen" style="display: none">
+    <div class="row">
+      <div class="col">
+        <h6 class="display-4 text-center">Letra: <strong id="letter"></strong></h6>
+        <br>
+      </div>
     </div>
-  </div>
-  <div class="row row-cols-3" id="playerCards">
+    <form>
+      <!-- Nombre -->
+      <div class="form-group row">
+        <div class="col-3"></div>
+        <label for="inputName" class="text-right col-2 col-form-label">Nombre</label>
+        <div class="col-3">
+          <input type="text" class="form-control" id="inputName">
+        </div>
+        <div class="col-4"></div>
+      </div>
+      <!-- Apellido -->
+      <div class="form-group row">
+        <div class="col-3"></div>
+        <label for="inputSurname" class="text-right col-2 col-form-label">Apellido</label>
+        <div class="col-3">
+          <input type="text" class="form-control" id="inputSurname">
+        </div>
+        <div class="col-4"></div>
+      </div>
+      <!-- Animal -->
+      <div class="form-group row">
+        <div class="col-3"></div>
+        <label for="inputAnimal" class="text-right col-2 col-form-label">Animal</label>
+        <div class="col-3">
+          <input type="text" class="form-control" id="inputAnimal">
+        </div>
+        <div class="col-4"></div>
+      </div>
+      <!-- Ciudad o País -->
+      <div class="form-group row">
+        <div class="col-3"></div>
+        <label for="inputCoC" class="text-right col-2 col-form-label">Ciudad o País</label>
+        <div class="col-3">
+          <input type="text" class="form-control" id="inputCoC">
+        </div>
+        <div class="col-4"></div>
+      </div>
+      <!-- Color -->
+      <div class="form-group row">
+        <div class="col-3"></div>
+        <label for="inputColor" class="text-right col-2 col-form-label">Color</label>
+        <div class="col-3">
+          <input type="text" class="form-control" id="inputColor">
+        </div>
+        <div class="col-4"></div>
+      </div>
+      <!-- Flor o Fruto -->
+      <div class="form-group row">
+        <div class="col-3"></div>
+        <label for="inputFoF" class="text-right col-2 col-form-label">Flor o Fruto</label>
+        <div class="col-3">
+          <input type="text" class="form-control" id="inputFoF">
+        </div>
+        <div class="col-4"></div>
+      </div>
+      <!-- Marca -->
+      <div class="form-group row">
+        <div class="col-3"></div>
+        <label for="inputBrand" class="text-right col-2 col-form-label">Marca</label>
+        <div class="col-3">
+          <input type="text" class="form-control" id="inputBrand">
+        </div>
+        <div class="col-4"></div>
+      </div>
+      <!-- Película o Serie -->
+      <div class="form-group row">
+        <div class="col-3"></div>
+        <label for="inputMoTV" class="text-right col-2 col-form-label">Película o Serie</label>
+        <div class="col-3">
+          <input type="text" class="form-control" id="inputMoTV">
+        </div>
+        <div class="col-4"></div>
+      </div>
+      <div class="row">
+        <div class="col-5"></div>
+        <div class="col-2">
+          <button class="btn btn-danger w-100" onclick="stopGame()"><strong>¡BASTA!</strong></button>
+        </div>
+        <div class="col-5"></div>
+      </div>
+    </form>
   </div>
 </main>

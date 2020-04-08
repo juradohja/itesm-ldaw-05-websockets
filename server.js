@@ -59,6 +59,7 @@ const axios = require('axios');
 
 var players = [];
 var sockets = [];
+var alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
 io.on('connection', (socket) => {
   axios.get("https://random-word-api.herokuapp.com/word?number=1")
@@ -72,7 +73,13 @@ io.on('connection', (socket) => {
   let i = 0;
   socket.on('startGame', () => {
     console.log("Game is starting.");
+    var letter = alphabet[Math.floor((Math.random() * 26))];
+    socket.emit('startGame', {letter : letter});
+    socket.broadcast.emit('startGame', {letter : letter});
   });
+  socket.on('stopGame', () => {
+    console.log("Stop");
+  })
   socket.on('disconnect', () => {
     var i = sockets.indexOf(socket);
     var disconnectedPlayer = players[i];

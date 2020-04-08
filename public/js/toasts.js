@@ -38,3 +38,16 @@ function playerDisconnectToast(name){
     loader : false
   })
 }
+
+function gameStartsToast(letter){
+  var msg = "Llena los campos para cada categoría. Cuando termines, presiona \"¡Basta!\". La letra es " + letter + ".";
+  $.toast({
+    heading : "Corre tiempo: " + letter,
+    text : msg,
+    position : "bottom-right",
+    showHideTransition : "slide",
+    loader : false,
+    bgColor : "#609630",
+    hideAfter : 5000
+  })
+}
