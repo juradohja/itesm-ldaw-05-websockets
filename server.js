@@ -70,8 +70,8 @@ io.on('connection', (socket) => {
       socket.broadcast.emit('newPlayer', {players : players});
     });
   let i = 0;
-  socket.on('message-to-server', (data) => {
-    console.log("message received: ", data)
+  socket.on('startGame', () => {
+    console.log("Game is starting.");
   });
   socket.on('disconnect', () => {
     var i = sockets.indexOf(socket);

@@ -33,9 +33,15 @@ $(function() {
 function updateCards(players) {
   $("#playerCards").html("");
   players.forEach(p => {
-    var color = p === player ? "bg-success" : "bg-primary";
-    $("#playerCards").append("<div class='card text-white " + color + " w-25 d-inline-block'>" +
+    var color = p === player ? "bg-primary" : "bg-secondary";
+    $("#playerCards").append("<div class='col-2 mb-4'>" +
+      "<div class='card text-white text-center " + color + "'>" +
       "<div class='card-body'>" + p + "</div>" +
+      "</div>" +
       "</div>")
   });
+}
+
+function startGame(){
+  window.socket.emit("startGame");
 }
