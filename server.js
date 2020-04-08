@@ -55,16 +55,31 @@ app.use(express.static(__dirname + "/public"));
 // Routes
 app.use('/', webRoutes);
 
+const axios = require('axios');
+
+var players = [];
+var sockets = [];
+
 io.on('connection', (socket) => {
-  console.log('Client connected');
+  axios.get("https://random-word-api.herokuapp.com/word?number=1")
+    .then((response) => {
+      var newPlayer = response.data[0];
+      players.push(newPlayer);
+      sockets.push(socket);
+      socket.emit('welcome', {name : newPlayer, players : players});
+      socket.broadcast.emit('newPlayer', {players : players});
+    });
   let i = 0;
-  setInterval(() => {
-    socket.emit('toast', {message : "Mensaje" + i})
-    i++;
-  }, 1000);
   socket.on('message-to-server', (data) => {
     console.log("message received: ", data)
-  })
+  });
+  socket.on('disconnect', () => {
+    var i = sockets.indexOf(socket);
+    var disconnectedPlayer = players[i];
+    players.splice(i,1);
+    sockets.splice(i, 1);
+    socket.broadcast.emit('playerDisconnect', {name : disconnectedPlayer, players : players});
+  });
 })
 
 // App init
