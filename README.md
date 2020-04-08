@@ -1,8 +1,9 @@
-# Express Boilerplate
+# Websockets
+#### Por: José Alberto Jurado
 
-Este proyecto lo puedes utilizar como base para construir tus sistemas.
-
-El proyecto ya viene configurado con algunos paquetes comunes que utilizamos.
+GD #5 para la materia Laboratorio de desarrollo de aplicaciones
+Web. Juego de Basta en línea que maneja websockets para mandar notificaciones
+a cada sesión activa y actualizar la pantalla de juego según el flujo de este.
 
 ## Instalación
 
@@ -29,4 +30,9 @@ knex seed:run
 ## Ejecución
 ```
 node server.js
+```
+Para recargar el proyecto sin tener que ejecutarlo manualmente
+después de cada cambio, utilizar nodemon.
+```
+nodemon server.js
 ```
