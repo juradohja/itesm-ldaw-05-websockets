@@ -89,6 +89,11 @@ function prepareGame(ltr){
   $("#btnRestart").hide();
   $("#btnStop").show();
   gameStartsToast(letter);
+
+  $("input[type='text']").prop("disabled", false);
+  $("input[type='text']").removeClass("is-valid");
+  $("input[type='text']").removeClass("is-invalid");
+  $("input[type='text']").val("");
 }
 
 function evaluateAnswers(){
