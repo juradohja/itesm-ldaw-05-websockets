@@ -21,7 +21,7 @@
     "express-validator": "^6.4.0",
     "handlebars-helpers": "^0.10.0",
     "http": "0.0.1-security",
-    "knex": "^0.20.11",
+    "knex": "^2.4.0",
     "mysql2": "^2.1.0",
     "nodemon": "^2.0.2",
     "passport": "^0.4.1",
